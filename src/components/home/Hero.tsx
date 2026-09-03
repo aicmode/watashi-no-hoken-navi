@@ -1,5 +1,6 @@
 import { ButtonLink } from "../ui/Button";
 import { Container } from "../ui/Container";
+import { ANALOGY_CHIPS } from "@/data/analogies";
 
 export function Hero() {
   return (
@@ -21,8 +22,8 @@ export function Hero() {
       <Container>
         <div className="flex flex-col items-center pb-16 pt-14 text-center sm:pb-24 sm:pt-24">
           <span className="animate-fade-in inline-flex items-center gap-2 rounded-full border border-line bg-surface/80 px-3.5 py-1.5 text-xs font-semibold text-ink-soft shadow-sm backdrop-blur">
-            <span aria-hidden>🚗</span>
-            クルマを選ぶ感覚で、保険を知る
+            <span aria-hidden>🚗📱🏠</span>
+            身近なものに例えて、保険を知る
           </span>
 
           <h1 className="text-balance-ja animate-fade-up mt-6 text-[2rem] font-bold leading-[1.35] tracking-tight text-ink sm:text-5xl sm:leading-[1.3]">
@@ -35,9 +36,9 @@ export function Hero() {
             className="text-balance-ja animate-fade-up mt-5 max-w-xl text-[0.98rem] leading-relaxed text-ink-soft sm:text-lg"
             style={{ animationDelay: "0.1s" }}
           >
-            クルマの安全装備を選ぶように、
+            身近なものに置き換えながら、
             <br className="hidden sm:block" />
-            あなたの暮らしに必要な“備え”を見つけてみませんか？
+            あなたの暮らしに関係する“備え”を見てみませんか？
           </p>
 
           <div
@@ -45,18 +46,18 @@ export function Hero() {
             style={{ animationDelay: "0.18s" }}
           >
             <ButtonLink href="/navi" size="lg" className="w-full sm:w-auto">
-              自分に必要な備えを見てみる
+              自分に関係する備えを見てみる
               <span aria-hidden>→</span>
             </ButtonLink>
             <p className="text-xs text-muted">約1分・登録も入力もありません</p>
           </div>
 
-          {/* 比喩のミニビジュアル */}
+          {/* 「自分にしっくりくる例えを選べる」ことを示すミニビジュアル */}
           <div
             className="animate-fade-up mt-14 w-full"
             style={{ animationDelay: "0.26s" }}
           >
-            <MetaphorStrip />
+            <AnalogyStrip />
           </div>
         </div>
       </Container>
@@ -64,17 +65,27 @@ export function Hero() {
   );
 }
 
-function MetaphorStrip() {
+function AnalogyStrip() {
   return (
     <div className="rounded-3xl border border-line bg-surface/80 p-5 shadow-[0_20px_50px_-32px_rgba(16,22,35,0.35)] backdrop-blur sm:p-7">
       <div className="grid grid-cols-1 items-center gap-4 sm:grid-cols-[1fr_auto_1fr]">
         <div className="rounded-2xl bg-canvas px-5 py-5 text-left">
           <p className="text-[0.7rem] font-semibold tracking-wide text-muted">
-            クルマなら
+            自分にしっくりくる例えで
           </p>
-          <p className="mt-1.5 text-[0.95rem] font-bold text-ink">安全装備</p>
-          <p className="mt-1 text-xs leading-relaxed text-ink-soft">
-            事故を防ぐ・被害を小さくするための装備を選ぶ
+          <ul className="mt-2.5 flex flex-wrap gap-2">
+            {ANALOGY_CHIPS.map((a) => (
+              <li
+                key={a.id}
+                className="inline-flex items-center gap-1.5 rounded-full bg-surface px-3 py-1.5 text-[0.8rem] font-bold text-ink shadow-[0_6px_16px_-12px_rgba(16,22,35,0.6)]"
+              >
+                <span aria-hidden>{a.emoji}</span>
+                {a.label}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-2.5 text-xs leading-relaxed text-ink-soft">
+            3つの中から、いちばん想像しやすいものを選べます
           </p>
         </div>
 

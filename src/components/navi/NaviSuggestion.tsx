@@ -17,7 +17,7 @@ export function NaviSuggestion({ event }: { event: LifeEvent }) {
       </span>
 
       <h3 className="text-balance-ja mt-3.5 text-[1.05rem] font-bold leading-relaxed text-ink sm:text-lg">
-        今のあなたなら、このあたりから考えてみてもよさそうです
+        今の暮らしなら、このあたりから見てみてもよさそうです
       </h3>
       <p className="text-balance-ja mt-2 text-[0.83rem] leading-relaxed text-ink-soft">
         {event.naviNote}
@@ -46,7 +46,7 @@ export function NaviSuggestion({ event }: { event: LifeEvent }) {
       </ol>
 
       <p className="text-balance-ja mt-5 rounded-2xl bg-surface/70 px-4 py-3 text-[0.72rem] leading-relaxed text-muted">
-        これは一般的な考え方の順番を示したもので、特定の保険商品をおすすめするものではありません。実際にどうするかは、状況によって変わります。
+        これは一般的な考え方の順番を示したもので、特定の保険商品をすすめるものではありません。実際にどうするかは、状況によって変わります。
       </p>
     </div>
   );

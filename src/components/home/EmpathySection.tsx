@@ -32,7 +32,7 @@ export function EmpathySection() {
               自然なことです。
             </>
           }
-          lead="ほとんどの人が同じところでつまずきます。無理にわかろうとしなくて大丈夫です。"
+          lead="保険には、難しく感じやすい言葉がたくさん出てきます。無理にわかろうとしなくて大丈夫です。"
         />
 
         <ul className="stagger mt-8 grid gap-3 sm:grid-cols-3 sm:gap-4">

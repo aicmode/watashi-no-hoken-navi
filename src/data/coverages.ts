@@ -2,12 +2,26 @@
  * 「備え」のカテゴリー定義。
  * ここは商品ではなく "考え方のカテゴリー" のみを扱う。
  * 将来カテゴリーを増やす場合はこの配列に足すだけでよい。
+ *
+ * 例え（クルマ / スマホ / 住まい）ごとの言い換えは
+ * src/data/analogies.ts の coverageAnalogies が持つ。
  */
 
 export type CoverageId = "medical" | "income" | "family" | "accident";
 
-/** ざっくりした分類。生命保険 / 損害保険どちらの話題に近いかの目安。 */
-export type InsuranceField = "life" | "nonlife";
+/**
+ * ざっくりした分類の目安。
+ * 「生命保険会社＝これだけ」と断定するものではなく、
+ * どの分野の話題に近いかを示すだけのラベル。
+ */
+export type InsuranceField = "life" | "nonlife" | "both";
+
+/** 分野ラベルに添える注記（断定を避けた表現に統一する） */
+export const FIELD_NOTE: Record<InsuranceField, string> = {
+  life: "一般に「生命保険」の分野で話題になりやすいテーマです。",
+  nonlife: "一般に「損害保険」の分野で話題になりやすいテーマです。",
+  both: "生命保険・損害保険のどちらにも関係する商品があるテーマです。",
+};
 
 export type Coverage = {
   id: CoverageId;
@@ -16,8 +30,6 @@ export type Coverage = {
   /** カード表面に出す短い説明（1〜2行） */
   summary: string;
   field: InsuranceField;
-  /** クルマの装備に例えるとどれに近いか（あくまで比喩） */
-  carAnalogy: string;
   /** タップで開く詳細。文章は短く、箇条書き中心。 */
   detail: {
     lead: string;
@@ -31,8 +43,7 @@ export const COVERAGES: Coverage[] = [
     emoji: "🏥",
     title: "医療への備え",
     summary: "病気やケガで治療・入院が必要になったときの備え。",
-    field: "life",
-    carAnalogy: "衝突したあとの被害を小さくする装備",
+    field: "both",
     detail: {
       lead: "入院や手術は、治療費そのものだけで終わらないことがあります。",
       points: [
@@ -48,7 +59,6 @@ export const COVERAGES: Coverage[] = [
     title: "働けないときへの備え",
     summary: "病気やケガなどで仕事ができない期間の生活を考える備え。",
     field: "life",
-    carAnalogy: "走れなくなったときのロードサービス",
     detail: {
       lead: "治療そのものより、「その間の収入」が気になる人は少なくありません。",
       points: [
@@ -64,12 +74,11 @@ export const COVERAGES: Coverage[] = [
     title: "家族への備え",
     summary: "もしものときに家族の生活を支えるための備え。",
     field: "life",
-    carAnalogy: "同乗者を守るためのエアバッグ",
     detail: {
       lead: "自分ひとりの問題ではなくなったときに、意識されやすい備えです。",
       points: [
         "住まいの費用や教育費など、続いていく支出がある家庭ほど関心が高い",
-        "家族構成やライフステージが変わると、必要な考え方も変わる",
+        "家族構成やライフステージが変わると、考えたいことも変わる",
         "「今の暮らしを、どのくらいの期間支えたいか」が出発点になる",
       ],
     },
@@ -80,7 +89,6 @@ export const COVERAGES: Coverage[] = [
     title: "事故・トラブルへの備え",
     summary: "車や日常生活で起こる事故・トラブルへの備え。",
     field: "nonlife",
-    carAnalogy: "ぶつからないための予防安全装備",
     detail: {
       lead: "自分がケガをする側だけでなく、相手や物に関わる場面もあります。",
       points: [

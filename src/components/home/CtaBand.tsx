@@ -19,7 +19,7 @@ export function CtaBand() {
               まずは、眺めてみるだけで大丈夫です。
             </h2>
             <p className="text-balance-ja mx-auto mt-3 max-w-md text-[0.9rem] leading-relaxed text-white/70">
-              入力も登録もありません。選ぶのは、最近あった変化を1つだけ。
+              入力も登録もありません。選ぶのは、しっくりくる例えと、最近あった変化だけ。
             </p>
             <ButtonLink
               href="/navi"
@@ -27,7 +27,7 @@ export function CtaBand() {
               variant="secondary"
               className="mt-7 w-full sm:w-auto"
             >
-              自分に必要な備えを見てみる
+              自分に関係する備えを見てみる
               <span aria-hidden>→</span>
             </ButtonLink>
           </div>

@@ -1,13 +1,17 @@
 "use client";
 
 import { useId, useState } from "react";
-import type { Coverage } from "@/data/coverages";
+import { FIELD_NOTE, type Coverage } from "@/data/coverages";
+import type { Analogy } from "@/data/analogies";
 
 export function CoverageCard({
   coverage,
+  analogy,
   highlighted = false,
 }: {
   coverage: Coverage;
+  /** 選ばれた例え。カード内の言い換え表現がこれに合わせて変わる。 */
+  analogy: Analogy;
   highlighted?: boolean;
 }) {
   const [open, setOpen] = useState(false);
@@ -42,7 +46,7 @@ export function CoverageCard({
             </span>
             {highlighted ? (
               <span className="rounded-full bg-brand-soft px-2 py-0.5 text-[0.68rem] font-bold text-brand-deep">
-                まずここから
+                まず見てみる
               </span>
             ) : null}
           </span>
@@ -65,10 +69,11 @@ export function CoverageCard({
           <div className="space-y-4 px-5 pb-5 pt-4">
             <div className="rounded-xl bg-canvas px-4 py-3">
               <p className="text-[0.7rem] font-semibold text-muted">
-                クルマに例えるなら
+                <span aria-hidden>{analogy.emoji}</span>{" "}
+                {analogy.title}に例えるなら
               </p>
               <p className="text-balance-ja mt-1 text-[0.85rem] font-bold text-ink">
-                {coverage.carAnalogy}
+                {analogy.coverageAnalogies[coverage.id]}
               </p>
             </div>
 
@@ -87,10 +92,8 @@ export function CoverageCard({
               ))}
             </ul>
 
-            <p className="text-[0.72rem] text-muted">
-              {coverage.field === "life"
-                ? "一般に「生命保険」で話題になりやすい分野です。"
-                : "一般に「損害保険」で話題になりやすい分野です。"}
+            <p className="text-balance-ja text-[0.72rem] leading-relaxed text-muted">
+              {FIELD_NOTE[coverage.field]}
             </p>
           </div>
         </div>

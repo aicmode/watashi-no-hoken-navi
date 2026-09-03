@@ -4,18 +4,23 @@ import { SectionHeading } from "../ui/SectionHeading";
 const STEPS = [
   {
     no: "01",
+    title: "しっくりくる例えを選ぶ",
+    body: "クルマ・スマホ・住まい。自分がいちばん想像しやすいものを1つ選びます。",
+  },
+  {
+    no: "02",
     title: "最近の変化を選ぶ",
     body: "車を買った、結婚した、働き方が変わった。当てはまるものを1つ選ぶだけ。",
   },
   {
-    no: "02",
-    title: "クルマに例えて読む",
-    body: "専門用語ではなく、クルマの装備の話に置き換えて説明します。",
+    no: "03",
+    title: "選んだ例えで読む",
+    body: "専門用語ではなく、選んだ例えの話に置き換えて説明します。",
   },
   {
-    no: "03",
+    no: "04",
     title: "考える入口を知る",
-    body: "「どこから考えるとよさそうか」の目安が見えます。商品の紹介はしません。",
+    body: "「どこから見てみるとよさそうか」の目安が見えます。商品の紹介はしません。",
   },
 ];
 
@@ -27,7 +32,7 @@ export function HowItWorks() {
           eyebrow="体験の流れ"
           title="1分で、こんなことがわかります"
         />
-        <ol className="stagger mt-8 grid gap-3 sm:grid-cols-3 sm:gap-4">
+        <ol className="stagger mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
           {STEPS.map((s) => (
             <li
               key={s.no}

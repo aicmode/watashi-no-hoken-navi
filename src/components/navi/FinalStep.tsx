@@ -1,12 +1,19 @@
 import { ContactCta } from "../ContactCta";
 import { Button, ButtonLink } from "../ui/Button";
+import type { Analogy } from "@/data/analogies";
 import type { LifeEvent } from "@/data/lifeEvents";
 
 export function FinalStep({
+  analogy,
   event,
+  onChangeAnalogy,
+  onChangeEvent,
   onRestart,
 }: {
+  analogy: Analogy;
   event: LifeEvent;
+  onChangeAnalogy: () => void;
+  onChangeEvent: () => void;
   onRestart: () => void;
 }) {
   return (
@@ -19,7 +26,7 @@ export function FinalStep({
           少しだけ、保険が身近になりましたか？
         </h2>
         <p className="text-balance-ja mx-auto mt-3.5 max-w-md text-[0.9rem] leading-relaxed text-ink-soft">
-          「{event.label}」という変化から、暮らしの備えを眺めてみました。全部を理解する必要はありません。気になるところが一つ見つかれば十分です。
+          「{analogy.title}」に置き換えながら、「{event.label}」という変化から暮らしの備えを眺めてみました。全部を覚えなくて大丈夫です。気になるところが一つ見つかれば十分です。
         </p>
 
         <div className="mx-auto mt-8 max-w-md rounded-2xl bg-canvas px-5 py-6">
@@ -34,10 +41,22 @@ export function FinalStep({
           <ContactCta className="mt-5 w-full" />
         </div>
 
-        <div className="mt-7 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3">
-          <Button variant="secondary" onClick={onRestart} className="w-full sm:w-auto">
+        {/* 別の入口も試せることを、控えめに示す */}
+        <div className="mx-auto mt-7 flex max-w-md flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[0.78rem] font-semibold">
+          <TextLink onClick={onChangeAnalogy}>
+            <span aria-hidden>{analogy.emoji}</span>
+            別の例えで見てみる
+          </TextLink>
+          <span aria-hidden className="hidden h-3 w-px bg-line sm:block" />
+          <TextLink onClick={onChangeEvent}>
             <span aria-hidden>↺</span>
             別のできごとで見てみる
+          </TextLink>
+        </div>
+
+        <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3">
+          <Button variant="secondary" onClick={onRestart} className="w-full sm:w-auto">
+            はじめから見てみる
           </Button>
           <ButtonLink href="/" variant="ghost" className="w-full sm:w-auto">
             トップにもどる
@@ -45,5 +64,23 @@ export function FinalStep({
         </div>
       </div>
     </div>
+  );
+}
+
+function TextLink({
+  onClick,
+  children,
+}: {
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="inline-flex items-center gap-1.5 py-2.5 text-muted underline-offset-4 transition-colors hover:text-brand hover:underline"
+    >
+      {children}
+    </button>
   );
 }
