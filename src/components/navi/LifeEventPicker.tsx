@@ -2,6 +2,9 @@
 
 import { LIFE_EVENTS, type LifeEventId } from "@/data/lifeEvents";
 import { useDeferredSelect } from "./useDeferredSelect";
+import { AppIcon, STROKE } from "../ui/AppIcon";
+import { IconScene } from "../ui/IconScene";
+import { LIFE_EVENT_SCENES } from "../ui/visuals";
 
 export function LifeEventPicker({
   selected,
@@ -23,23 +26,19 @@ export function LifeEventPicker({
             onClick={() => select(e.id)}
             aria-pressed={isSelected}
             className={[
-              "group flex items-center gap-4 rounded-2xl border bg-surface p-4 text-left",
-              "shadow-[0_12px_30px_-28px_rgba(16,22,35,0.6)] transition-all duration-300",
-              "hover:-translate-y-0.5 hover:border-brand/45 hover:shadow-[0_18px_36px_-26px_rgba(31,86,214,0.55)]",
+              "group scene-group flex min-h-24 items-center gap-4 rounded-3xl border bg-surface p-4 text-left sm:p-5",
+              "shadow-[0_14px_38px_-32px_rgba(13,27,47,0.55)] transition-all duration-300",
+              "hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_22px_46px_-30px_rgba(25,92,199,0.4)]",
               "active:scale-[0.99]",
-              isSelected ? "border-brand bg-brand-soft/50" : "border-line",
+              isSelected ? "border-brand bg-brand-soft/55 ring-2 ring-brand/15" : "border-line",
             ].join(" ")}
           >
-            <span
-              aria-hidden
-              className={[
-                "grid size-12 shrink-0 place-items-center rounded-2xl bg-canvas text-2xl",
-                "transition-transform duration-300 group-hover:scale-105",
-                isSelected ? "scale-105 bg-surface" : "",
-              ].join(" ")}
-            >
-              {e.emoji}
-            </span>
+            <IconScene
+              {...LIFE_EVENT_SCENES[e.id]}
+              variant="life-event"
+              active={isSelected}
+              edge={isSelected ? "#f2f7ff" : "#ffffff"}
+            />
             <span className="min-w-0 flex-1">
               <span className="block text-[1rem] font-bold text-ink">
                 {e.label}
@@ -55,7 +54,7 @@ export function LifeEventPicker({
                   : "group-hover:translate-x-0.5 group-hover:text-brand",
               ].join(" ")}
             >
-              →
+              {isSelected ? <AppIcon name="check" size={18} strokeWidth={STROKE.inline} /> : <AppIcon name="arrow-right" size={17} />}
             </span>
           </button>
         );

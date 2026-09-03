@@ -1,15 +1,14 @@
 import { Container } from "./ui/Container";
 import { DISCLAIMER, SITE } from "@/lib/site";
+import { BrandMark } from "./ui/BrandMark";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-20 border-t border-line bg-surface/60">
+    <footer className="mt-20 border-t border-line/80 bg-surface/70">
       <Container size="lg">
-        <div className="flex flex-col gap-5 py-9">
+        <div className="flex flex-col gap-5 py-10 sm:py-12">
           <div className="flex items-center gap-2">
-            <span aria-hidden className="text-base">
-              🧭
-            </span>
+            <BrandMark className="size-7" />
             <span className="text-sm font-bold text-ink">{SITE.name}</span>
           </div>
           <p className="text-balance-ja max-w-3xl text-[0.72rem] leading-relaxed text-muted">

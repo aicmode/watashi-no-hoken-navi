@@ -7,6 +7,13 @@ import {
   CONTACT_PREPARING_MESSAGE,
   type ContactChannel,
 } from "@/lib/contact";
+import { AppIcon, type AppIconName } from "./ui/AppIcon";
+
+const CHANNEL_ICONS: Record<string, AppIconName> = {
+  line: "message",
+  tel: "phone",
+  form: "mail",
+};
 
 type Props = {
   open: boolean;
@@ -25,16 +32,33 @@ export function ContactModal({
 }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      if (e.key !== "Tab" || !panelRef.current) return;
+
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     },
     [onClose],
   );
 
   useEffect(() => {
     if (!open) return;
+    previousFocusRef.current = document.activeElement as HTMLElement | null;
     document.addEventListener("keydown", handleKeyDown);
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -42,6 +66,7 @@ export function ContactModal({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = prevOverflow;
+      previousFocusRef.current?.focus();
     };
   }, [open, handleKeyDown]);
 
@@ -49,7 +74,7 @@ export function ContactModal({
 
   return (
     <div
-      className="animate-fade-in fixed inset-0 z-50 flex items-end justify-center bg-ink/45 p-0 backdrop-blur-sm sm:items-center sm:p-6"
+      className="animate-fade-in fixed inset-0 z-50 flex items-end justify-center bg-ink/55 p-0 backdrop-blur-md sm:items-center sm:p-6"
       onMouseDown={(e) => {
         if (!panelRef.current?.contains(e.target as Node)) onClose();
       }}
@@ -59,12 +84,13 @@ export function ContactModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-modal-title"
-        className="animate-pop max-h-[90dvh] w-full max-w-md overflow-y-auto rounded-t-3xl bg-surface p-6 text-left shadow-2xl sm:rounded-3xl sm:p-7"
+        aria-describedby="contact-modal-description"
+        className="animate-pop max-h-[90dvh] w-full max-w-md overflow-y-auto rounded-t-[2rem] border border-line bg-surface p-6 text-left shadow-[0_28px_90px_-28px_rgba(13,27,47,0.65)] sm:rounded-[2rem] sm:p-8"
       >
         <div className="flex items-start justify-between gap-4">
           <div>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-soft px-2.5 py-1 text-[0.7rem] font-bold text-amber">
-              <span aria-hidden>🚧</span>
+              <AppIcon name="sparkles" size={13} />
               準備中
             </span>
             <h2
@@ -81,11 +107,11 @@ export function ContactModal({
             aria-label="閉じる"
             className="grid size-11 shrink-0 place-items-center rounded-full bg-canvas text-muted transition-colors hover:bg-line-soft hover:text-ink"
           >
-            <span aria-hidden>✕</span>
+            <AppIcon name="x" size={19} />
           </button>
         </div>
 
-        <p className="text-balance-ja mt-3 text-[0.85rem] leading-relaxed text-ink-soft">
+        <p id="contact-modal-description" className="text-balance-ja mt-3 text-[0.85rem] leading-relaxed text-ink-soft">
           このデモでは、実際のご相談の受付は行っていません。正式版では、以下のような相談方法を用意する想定です。
         </p>
 
@@ -112,8 +138,8 @@ export function ContactModal({
 function ChannelRow({ channel }: { channel: ContactChannel }) {
   const content = (
     <>
-      <span aria-hidden className="text-lg">
-        {channel.emoji}
+      <span aria-hidden className="grid size-10 shrink-0 place-items-center rounded-xl bg-surface text-brand shadow-sm">
+        <AppIcon name={CHANNEL_ICONS[channel.id] ?? "message"} size={18} />
       </span>
       <span className="min-w-0">
         <span className="block text-[0.9rem] font-bold text-ink">

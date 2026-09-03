@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "./ui/Button";
 import { ContactModal } from "./ContactModal";
+import { AppIcon } from "./ui/AppIcon";
 
 /**
  * 相談ボタン + モーダル。
@@ -22,7 +23,7 @@ export function ContactCta({
     <>
       <Button size="lg" className={className} onClick={() => setOpen(true)}>
         {label}
-        <span aria-hidden>→</span>
+        <AppIcon name="arrow-right" size={18} className="transition-transform group-hover:translate-x-0.5" />
       </Button>
       <ContactModal open={open} onClose={() => setOpen(false)} />
     </>

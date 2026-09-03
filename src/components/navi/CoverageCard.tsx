@@ -3,6 +3,9 @@
 import { useId, useState } from "react";
 import { FIELD_NOTE, type Coverage } from "@/data/coverages";
 import type { Analogy } from "@/data/analogies";
+import { AppIcon } from "../ui/AppIcon";
+import { IconScene } from "../ui/IconScene";
+import { analogyIconName, COVERAGE_SCENES } from "../ui/visuals";
 
 export function CoverageCard({
   coverage,
@@ -20,7 +23,7 @@ export function CoverageCard({
   return (
     <div
       className={[
-        "overflow-hidden rounded-2xl border bg-surface transition-all duration-300",
+        "overflow-hidden rounded-3xl border bg-surface transition-all duration-300",
         highlighted
           ? "border-brand/45 shadow-[0_16px_40px_-30px_rgba(31,86,214,0.7)]"
           : "border-line shadow-[0_12px_30px_-28px_rgba(16,22,35,0.6)]",
@@ -31,14 +34,9 @@ export function CoverageCard({
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls={panelId}
-        className="flex w-full items-start gap-4 p-5 text-left"
+        className="group scene-group flex min-h-28 w-full items-start gap-4 p-5 text-left sm:p-6"
       >
-        <span
-          aria-hidden
-          className="grid size-11 shrink-0 place-items-center rounded-xl bg-canvas text-xl"
-        >
-          {coverage.emoji}
-        </span>
+        <IconScene {...COVERAGE_SCENES[coverage.id]} variant="coverage" />
         <span className="min-w-0 flex-1">
           <span className="flex flex-wrap items-center gap-2">
             <span className="text-[1rem] font-bold text-ink">
@@ -60,16 +58,22 @@ export function CoverageCard({
             open ? "rotate-180" : ""
           }`}
         >
-          ⌄
+          <AppIcon name="chevron-down" size={18} />
         </span>
       </button>
 
-      {open ? (
-        <div id={panelId} className="animate-fade-in border-t border-line-soft">
-          <div className="space-y-4 px-5 pb-5 pt-4">
+      <div
+        id={panelId}
+        aria-hidden={!open}
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="min-h-0 overflow-hidden">
+          <div className="space-y-4 border-t border-line-soft px-5 pb-5 pt-4">
             <div className="rounded-xl bg-canvas px-4 py-3">
               <p className="text-[0.7rem] font-semibold text-muted">
-                <span aria-hidden>{analogy.emoji}</span>{" "}
+                <AppIcon name={analogyIconName(analogy.id)} size={14} className="mr-1.5 inline" />
                 {analogy.title}に例えるなら
               </p>
               <p className="text-balance-ja mt-1 text-[0.85rem] font-bold text-ink">
@@ -111,7 +115,7 @@ export function CoverageCard({
             </div>
           </div>
         </div>
-      ) : null}
+      </div>
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import type { Analogy } from "@/data/analogies";
 import type { LifeEvent } from "@/data/lifeEvents";
+import { AppIcon } from "../ui/AppIcon";
+import { analogyIconName } from "../ui/visuals";
 
 /**
  * 「例え × ライフイベント」の説明パネル。
@@ -15,40 +17,40 @@ export function MetaphorPanel({
   const story = analogy.lifeEventStories[event.id];
 
   return (
-    <div className="animate-fade-up overflow-hidden rounded-3xl border border-line bg-surface shadow-[0_20px_50px_-38px_rgba(16,22,35,0.6)]">
+    <div className="animate-fade-up overflow-hidden rounded-[1.75rem] border border-line/80 bg-surface shadow-[0_24px_60px_-42px_rgba(13,27,47,0.58)]">
       <div className="grid gap-px bg-line sm:grid-cols-2">
         <Panel
           tone="metaphor"
-          emoji={analogy.emoji}
+          icon={analogyIconName(analogy.id)}
           badge={analogy.worldBadge}
           heading={story.heading}
           body={story.body}
         />
         <Panel
           tone="life"
-          emoji="🏡"
+          icon="home"
           badge="暮らしなら"
           heading={analogy.lifeHeading}
           body={story.lifeBody}
         />
       </div>
-      <div className="bg-brand-soft/70 px-6 py-5 sm:px-7">
+      <div className="border-t border-brand/10 bg-brand-soft/65 px-6 py-5 sm:px-8 sm:py-6">
         <p className="text-balance-ja text-[0.95rem] font-bold leading-relaxed text-brand-deep">
           {story.bridge}
         </p>
       </div>
-      <div className="border-t border-brand/10 bg-surface px-6 py-5 sm:px-7 sm:py-6">
-        <p className="text-[0.75rem] font-bold text-ink">
+      <div className="border-t border-brand/10 bg-surface px-6 py-6 sm:px-8 sm:py-7">
+        <p className="text-[0.7rem] font-bold tracking-[0.08em] text-brand-deep">
           この変化で考えてみたいこと
         </p>
         <ul className="mt-3 grid gap-2 sm:grid-cols-3">
-          {story.thinkingPoints.map((point) => (
+          {story.thinkingPoints.map((point, index) => (
             <li
               key={point}
-              className="flex gap-2 rounded-xl bg-canvas px-3.5 py-3"
+              className="flex gap-3 rounded-2xl border border-line/70 bg-canvas/70 px-4 py-4"
             >
-              <span aria-hidden className="mt-0.5 shrink-0 text-brand">
-                ?
+              <span aria-hidden className="grid size-7 shrink-0 place-items-center rounded-full bg-surface text-[0.68rem] font-black text-brand shadow-sm">
+                {String(index + 1).padStart(2, "0")}
               </span>
               <span className="text-balance-ja text-[0.78rem] leading-relaxed text-ink-soft">
                 {point}
@@ -63,26 +65,26 @@ export function MetaphorPanel({
 
 function Panel({
   tone,
-  emoji,
+  icon,
   badge,
   heading,
   body,
 }: {
   tone: "metaphor" | "life";
-  emoji: string;
+  icon: "home" | ReturnType<typeof analogyIconName>;
   badge: string;
   heading: string;
   body: string;
 }) {
   return (
-    <div className="bg-surface px-6 py-6 sm:px-7 sm:py-7">
+    <div className="bg-surface px-6 py-7 sm:px-8 sm:py-8">
       <span
         className={[
           "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.7rem] font-bold",
           tone === "metaphor" ? "bg-canvas text-muted" : "bg-mint-soft text-mint",
         ].join(" ")}
       >
-        <span aria-hidden>{emoji}</span>
+        <AppIcon name={icon} size={14} />
         {badge}
       </span>
       <h3 className="text-balance-ja mt-3 text-[1.05rem] font-bold text-ink">

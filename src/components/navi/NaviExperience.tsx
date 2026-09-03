@@ -18,6 +18,8 @@ import {
   type LifeEvent,
   type LifeEventId,
 } from "@/data/lifeEvents";
+import { AppIcon, type AppIconName } from "../ui/AppIcon";
+import { analogyIconName, lifeEventIconName } from "../ui/visuals";
 
 /**
  * 体験フロー本体。
@@ -76,11 +78,12 @@ export function NaviExperience() {
   const current: StepNo = !analogy ? 1 : !event && step > 2 ? 2 : step;
 
   return (
-    <div className="pb-8 pt-6 sm:pt-10">
+    <div className="relative overflow-hidden pb-10 pt-5 sm:pt-9">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[32rem] bg-[radial-gradient(circle_at_50%_0%,rgba(234,242,255,0.9),transparent_72%)]" />
       <Container>
         <div ref={topRef} className="scroll-mt-20" />
 
-        <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex min-h-11 flex-wrap items-center justify-between gap-3">
           <StepIndicator current={current} />
           {current > 1 ? (
             <button
@@ -144,21 +147,23 @@ function StepAnalogy({
   onSelect: (id: AnalogyId) => void;
 }) {
   return (
-    <section className="animate-fade-up mt-8">
-      <h1 className="text-balance-ja text-2xl font-bold leading-relaxed tracking-tight text-ink sm:text-3xl">
+    <section className="animate-fade-up mt-8 sm:mt-10">
+      <span className="text-[0.68rem] font-bold tracking-[0.12em] text-brand-deep">STEP 01 · YOUR PERSPECTIVE</span>
+      <h1 className="text-balance-ja mt-2 text-[1.7rem] font-bold leading-[1.5] tracking-[-0.03em] text-ink sm:text-[2.15rem]">
         あなたに合う例えを
         <br className="sm:hidden" />
         選んでみましょう
       </h1>
-      <p className="text-balance-ja mt-3 max-w-xl text-[0.9rem] leading-relaxed text-ink-soft">
+      <p className="text-balance-ja mt-3 max-w-2xl text-[0.9rem] leading-[1.9] text-ink-soft">
         難しく感じやすい保険の話を、あなたにとって身近なものに置き換えて見ていきます。しっくりくるものを1つ選んでください。あとから変えられます。
       </p>
 
-      <div className="mt-7">
+      <div className="mt-8">
         <AnalogyPicker selected={selected} onSelect={onSelect} />
       </div>
 
-      <p className="mt-6 text-[0.72rem] text-muted">
+      <p className="mt-6 flex items-start gap-2 text-[0.72rem] leading-relaxed text-muted">
+        <AppIcon name="help" size={15} className="mt-0.5 shrink-0" />
         どれを選んでも、扱う内容は同じです。説明の入り口が変わるだけです。
       </p>
     </section>
@@ -178,10 +183,11 @@ function StepLifeEvent({
   onChangeAnalogy: () => void;
 }) {
   return (
-    <section className="animate-fade-up mt-8">
+    <section className="animate-fade-up mt-8 sm:mt-10">
       <SelectionBar analogy={analogy} onChangeAnalogy={onChangeAnalogy} />
 
-      <h1 className="text-balance-ja mt-5 text-2xl font-bold leading-relaxed tracking-tight text-ink sm:text-3xl">
+      <span className="mt-5 block text-[0.68rem] font-bold tracking-[0.12em] text-brand-deep">STEP 02 · YOUR LIFE CHANGE</span>
+      <h1 className="text-balance-ja mt-2 text-[1.7rem] font-bold leading-[1.5] tracking-[-0.03em] text-ink sm:text-[2.15rem]">
         最近、あなたの暮らしで
         <br className="sm:hidden" />
         変わったことは？
@@ -223,16 +229,17 @@ function StepLearn({
   });
 
   return (
-    <section className="mt-8 space-y-10">
+    <section className="mt-8 space-y-10 sm:mt-10 sm:space-y-12">
       <header className="animate-fade-up">
         <div className="flex flex-wrap items-center gap-2">
-          <Chip emoji={analogy.emoji} label={analogy.title} />
+          <Chip icon={analogyIconName(analogy.id)} label={analogy.title} />
           <span aria-hidden className="text-[0.75rem] text-muted">
             ×
           </span>
-          <Chip emoji={event.emoji} label={event.label} />
+          <Chip icon={lifeEventIconName(event.id)} label={event.label} />
         </div>
-        <h1 className="text-balance-ja mt-4 text-2xl font-bold leading-relaxed tracking-tight text-ink sm:text-3xl">
+        <span className="mt-5 block text-[0.68rem] font-bold tracking-[0.12em] text-brand-deep">STEP 03 · UNDERSTAND</span>
+        <h1 className="text-balance-ja mt-2 text-[1.7rem] font-bold leading-[1.5] tracking-[-0.03em] text-ink sm:text-[2.15rem]">
           {/* 例えの名前で長さが変わるため、改行はブラウザに任せる */}
           {analogy.title}に例えると、わかりやすくなります。
         </h1>
@@ -245,7 +252,7 @@ function StepLearn({
 
       <MetaphorPanel analogy={analogy} event={event} />
 
-      <div>
+      <div className="rounded-[1.75rem] border border-line/70 bg-surface/55 p-4 sm:p-6">
         <h2 className="text-balance-ja text-xl font-bold text-ink sm:text-2xl">
           暮らしの備えは、大きく4つ
         </h2>
@@ -274,7 +281,7 @@ function StepLearn({
           onClick={onChangeLifeEvent}
           className="w-full sm:w-auto"
         >
-          <span aria-hidden>←</span>
+          <AppIcon name="arrow-left" size={17} />
           選び直す
         </Button>
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
@@ -283,7 +290,7 @@ function StepLearn({
           </ButtonLink>
           <Button size="lg" onClick={onNext} className="w-full sm:w-auto">
             ここまでのまとめを見る
-            <span aria-hidden>→</span>
+            <AppIcon name="arrow-right" size={18} className="transition-transform group-hover:translate-x-0.5" />
           </Button>
         </div>
       </div>
@@ -300,7 +307,7 @@ function SelectionBar({
 }) {
   return (
     <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-      <Chip emoji={analogy.emoji} label={`${analogy.title}で見ています`} />
+      <Chip icon={analogyIconName(analogy.id)} label={`${analogy.title}で見ています`} />
       <TextLink onClick={onChangeAnalogy}>
         <span className="text-[0.78rem] font-semibold">例えを変更する</span>
       </TextLink>
@@ -308,10 +315,10 @@ function SelectionBar({
   );
 }
 
-function Chip({ emoji, label }: { emoji: string; label: string }) {
+function Chip({ icon, label }: { icon: AppIconName; label: string }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-[0.75rem] font-bold text-ink-soft">
-      <span aria-hidden>{emoji}</span>
+    <span className="inline-flex min-h-9 items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-[0.75rem] font-bold text-ink-soft shadow-sm">
+      <AppIcon name={icon} size={14} className="text-brand" />
       {label}
     </span>
   );

@@ -3,6 +3,9 @@ import { Button, ButtonLink } from "../ui/Button";
 import type { Analogy } from "@/data/analogies";
 import type { LifeEvent } from "@/data/lifeEvents";
 import { FINAL_LEARNINGS } from "@/data/preparedness";
+import { AppIcon, STROKE } from "../ui/AppIcon";
+import { IconScene } from "../ui/IconScene";
+import { analogyIconName } from "../ui/visuals";
 
 export function FinalStep({
   analogy,
@@ -19,11 +22,20 @@ export function FinalStep({
 }) {
   return (
     <div className="animate-fade-up">
-      <div className="overflow-hidden rounded-3xl border border-line bg-surface p-7 text-center shadow-[0_24px_60px_-44px_rgba(16,22,35,0.7)] sm:p-10">
-        <span aria-hidden className="text-3xl">
-          🌤️
+      <div className="relative overflow-hidden rounded-[2rem] border border-line/80 bg-surface p-6 text-center shadow-[0_28px_70px_-46px_rgba(13,27,47,0.7)] sm:p-11">
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_50%_0%,rgba(234,242,255,0.95),transparent_72%)]" />
+        <span className="scene-group relative mx-auto block w-fit">
+          <IconScene
+            icon="sparkles"
+            badge="check"
+            tone="brand"
+            decor="rings"
+            shape="circle"
+            size="xl"
+            smSize="2xl"
+          />
         </span>
-        <h2 className="text-balance-ja mt-4 text-xl font-bold leading-relaxed text-ink sm:text-2xl">
+        <h2 className="text-balance-ja relative mt-4 text-xl font-bold leading-relaxed text-ink sm:text-2xl">
           少しだけ、保険が身近になりましたか？
         </h2>
         <p className="text-balance-ja mx-auto mt-3.5 max-w-md text-[0.9rem] leading-relaxed text-ink-soft">
@@ -37,12 +49,7 @@ export function FinalStep({
           <ul className="mt-3 space-y-2.5">
             {FINAL_LEARNINGS.map((learning) => (
               <li key={learning} className="flex gap-2.5">
-                <span
-                  aria-hidden
-                  className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-surface text-[0.65rem] font-bold text-brand"
-                >
-                  ✓
-                </span>
+                <span aria-hidden className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-surface text-brand"><AppIcon name="check" size={12} strokeWidth={STROKE.inline} /></span>
                 <span className="text-balance-ja text-[0.82rem] font-semibold leading-relaxed text-ink-soft">
                   {learning}
                 </span>
@@ -66,12 +73,12 @@ export function FinalStep({
         {/* 別の入口も試せることを、控えめに示す */}
         <div className="mx-auto mt-7 flex max-w-md flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[0.78rem] font-semibold">
           <TextLink onClick={onChangeAnalogy}>
-            <span aria-hidden>{analogy.emoji}</span>
+            <AppIcon name={analogyIconName(analogy.id)} size={15} />
             別の例えで見てみる
           </TextLink>
           <span aria-hidden className="hidden h-3 w-px bg-line sm:block" />
           <TextLink onClick={onChangeEvent}>
-            <span aria-hidden>↺</span>
+            <AppIcon name="restart" size={15} />
             別のできごとで見てみる
           </TextLink>
         </div>

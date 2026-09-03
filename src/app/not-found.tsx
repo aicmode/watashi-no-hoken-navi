@@ -1,12 +1,13 @@
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { AppIcon } from "@/components/ui/AppIcon";
 
 export default function NotFound() {
   return (
     <Container size="sm">
       <div className="flex flex-col items-center py-24 text-center">
-        <span aria-hidden className="text-3xl">
-          🧭
+        <span aria-hidden className="grid size-14 place-items-center rounded-2xl bg-brand-soft text-brand">
+          <AppIcon name="compass" size={26} />
         </span>
         <h1 className="mt-4 text-xl font-bold text-ink">
           ページが見つかりませんでした

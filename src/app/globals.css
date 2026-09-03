@@ -6,24 +6,26 @@
     Meiryo, system-ui, sans-serif;
 
   /* Base palette — calm, clean, trustworthy */
-  --color-ink: #101623;
-  --color-ink-soft: #3d4757;
-  --color-muted: #6b7484;
-  --color-line: #e6e9ef;
-  --color-line-soft: #f0f2f6;
-  --color-canvas: #f6f7fa;
+  --color-ink: #0d1b2f;
+  --color-ink-soft: #405066;
+  --color-muted: #616f85;
+  --color-line: #dfe5ed;
+  --color-line-soft: #edf1f5;
+  --color-canvas: #f5f7fa;
   --color-surface: #ffffff;
 
   /* Accents */
-  --color-brand: #1f56d6;
-  --color-brand-deep: #163f9e;
-  --color-brand-soft: #eaf0ff;
-  --color-mint: #0f9d76;
-  --color-mint-soft: #e6f6f1;
-  --color-amber: #b5761a;
-  --color-amber-soft: #fdf3e2;
+  --color-brand: #195cc7;
+  --color-brand-deep: #123f8c;
+  --color-brand-soft: #eaf2ff;
+  --color-mint: #077a61;
+  --color-mint-soft: #e7f7f3;
+  --color-cyan-soft: #eaf8fb;
+  --color-amber: #9a6417;
+  --color-amber-soft: #fff4df;
 
   --radius-xl2: 1.5rem;
+  --radius-panel: 1.75rem;
 
   --animate-fade-up: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-fade-in: fade-in 0.4s ease both;
@@ -70,12 +72,14 @@
   }
 
   body {
-    background-color: var(--color-canvas);
+    background:
+      radial-gradient(circle at 50% -10%, rgba(234, 242, 255, 0.72), transparent 28rem),
+      var(--color-canvas);
     color: var(--color-ink);
     font-family: var(--font-sans);
     /* 日本語の可読性を優先 */
-    line-height: 1.8;
-    letter-spacing: 0.01em;
+    line-height: 1.75;
+    letter-spacing: 0.006em;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
@@ -83,8 +87,8 @@
   h1,
   h2,
   h3 {
-    line-height: 1.45;
-    letter-spacing: 0.005em;
+    line-height: 1.4;
+    letter-spacing: -0.018em;
   }
 
   button {
@@ -92,9 +96,12 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-brand);
+    outline: 3px solid rgba(25, 92, 199, 0.38);
     outline-offset: 3px;
-    border-radius: 6px;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
   }
 }
 
@@ -116,6 +123,30 @@
   .stagger > *:nth-child(4) { animation-delay: 0.2s; }
   .stagger > *:nth-child(5) { animation-delay: 0.26s; }
   .stagger > *:nth-child(6) { animation-delay: 0.32s; }
+
+  .section-grid {
+    background-image:
+      linear-gradient(rgba(25, 92, 199, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(25, 92, 199, 0.035) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .details-reveal {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 240ms ease, opacity 180ms ease;
+  }
+
+  details[open] > .details-reveal {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .details-reveal > div {
+    min-height: 0;
+    overflow: hidden;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -126,5 +157,265 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   Illustrated Icon Tile（IconScene）
+   Lucide の線画を「素材」として使い、
+   面・グラデーション・装飾レイヤー・小バッジを重ねて
+   1つのミニイラストとして見せるための共通スタイル。
+   サイズは CSS 変数で受け取り、sm 以上で別サイズに切り替えられる。
+   ============================================================ */
+@layer components {
+  .scene {
+    --box: var(--sc-box);
+    --icon: var(--sc-icon);
+    --badge: var(--sc-badge);
+    --badge-icon: var(--sc-badge-icon);
+    --radius: var(--sc-radius);
+    --stroke: var(--sc-stroke, 1.9);
+
+    /* 既定トーン（ブランドブルー） */
+    --scene-from: #f0f6ff;
+    --scene-to: #d9e8ff;
+    --scene-ring: rgba(25, 92, 199, 0.16);
+    --scene-ink: #123f8c;
+    --scene-accent: #195cc7;
+    --scene-shadow: rgba(25, 92, 199, 0.5);
+    --scene-glow: rgba(25, 92, 199, 0.22);
+    --scene-badge-bg: #195cc7;
+    --scene-badge-ink: #ffffff;
+
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: var(--box);
+    height: var(--box);
+    border-radius: var(--radius);
+    color: var(--scene-ink);
+    /* ブロック内に単体で置いたとき、行の下に余白が出ないようにする */
+    vertical-align: top;
+  }
+
+  @media (min-width: 640px) {
+    .scene {
+      --box: var(--sc-box-sm, var(--sc-box));
+      --icon: var(--sc-icon-sm, var(--sc-icon));
+      --badge: var(--sc-badge-sm, var(--sc-badge));
+      --badge-icon: var(--sc-badge-icon-sm, var(--sc-badge-icon));
+      --radius: var(--sc-radius-sm, var(--sc-radius));
+      --stroke: var(--sc-stroke-sm, var(--sc-stroke, 1.9));
+    }
+  }
+
+  /* 背後のやわらかい光。hover / selected のときだけ薄く灯す */
+  .scene::before {
+    content: "";
+    position: absolute;
+    inset: -16%;
+    border-radius: 999px;
+    background: radial-gradient(circle, var(--scene-glow) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 0;
+  }
+
+  .scene__tile {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+      radial-gradient(118% 96% at 20% 6%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 56%),
+      linear-gradient(150deg, var(--scene-from) 0%, var(--scene-to) 100%);
+    box-shadow:
+      inset 0 0 0 1px var(--scene-ring),
+      inset 0 1px 1px rgba(255, 255, 255, 0.85),
+      0 10px 20px -14px var(--scene-shadow);
+    transition: box-shadow 0.3s ease;
+    z-index: 1;
+  }
+
+  /* 装飾レイヤー（点・弧・破線など） */
+  .scene__deco {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    color: var(--scene-accent);
+    opacity: 0.4;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+  }
+
+  .scene__icon {
+    position: relative;
+    z-index: 3;
+    width: var(--icon);
+    height: var(--icon);
+    stroke-width: var(--stroke);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scene__label {
+    position: relative;
+    z-index: 3;
+    font-size: calc(var(--icon) * 0.72);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* 右下の小バッジ（意味を補足するセカンダリアイコン） */
+  .scene__badge {
+    position: absolute;
+    right: calc(var(--badge) * -0.26);
+    bottom: calc(var(--badge) * -0.26);
+    z-index: 4;
+    display: grid;
+    place-items: center;
+    width: var(--badge);
+    height: var(--badge);
+    border-radius: 999px;
+    background: var(--scene-badge-bg);
+    color: var(--scene-badge-ink);
+    box-shadow:
+      0 0 0 2px var(--scene-edge, #ffffff),
+      0 6px 14px -8px rgba(13, 27, 47, 0.6);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* 左上の小チップ（3つ目の要素。白面で奥行きを作る） */
+  .scene__sat {
+    position: absolute;
+    left: calc(var(--badge) * -0.24);
+    top: calc(var(--badge) * -0.24);
+    z-index: 4;
+    display: grid;
+    place-items: center;
+    width: calc(var(--badge) * 0.94);
+    height: calc(var(--badge) * 0.94);
+    border-radius: 999px;
+    background: var(--scene-edge, #ffffff);
+    color: var(--scene-accent);
+    box-shadow:
+      inset 0 0 0 1px var(--scene-ring),
+      0 6px 14px -10px rgba(13, 27, 47, 0.55);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scene__badge svg,
+  .scene__sat svg {
+    width: var(--badge-icon);
+    height: var(--badge-icon);
+    stroke-width: 2.2;
+  }
+
+  /* --- Motion（控えめ。金融サイトとしての安心感を優先） --- */
+  /*
+   * モーション対象は .scene-group を付けた要素の中だけに限定する。
+   * （Tailwind の .group はレイアウト用途でも使うため、巻き込みを避ける）
+   */
+  .scene-group:hover .scene::before,
+  .scene-group:focus-visible .scene::before,
+  .scene[data-active="true"]::before {
+    opacity: 1;
+  }
+  .scene-group:hover .scene__icon,
+  .scene-group:focus-visible .scene__icon {
+    transform: translateY(-2px);
+  }
+  .scene-group:hover .scene__deco {
+    transform: rotate(4deg) scale(1.06);
+    opacity: 0.55;
+  }
+  .scene-group:hover .scene__badge {
+    transform: translateY(-1.5px) scale(1.06);
+  }
+  .scene-group:hover .scene__sat {
+    transform: translateY(1.5px) scale(1.04);
+  }
+  .scene[data-active="true"] .scene__deco {
+    opacity: 0.6;
+  }
+
+  /* --- トーン（すべてブランドの青系を基調にした淡い差） --- */
+  .scene[data-tone="cyan"] {
+    --scene-from: #eef8fc;
+    --scene-to: #d5eaf9;
+    --scene-ring: rgba(16, 108, 160, 0.16);
+    --scene-ink: #0f4a78;
+    --scene-accent: #1279ad;
+    --scene-shadow: rgba(16, 108, 160, 0.45);
+    --scene-glow: rgba(18, 121, 173, 0.2);
+    --scene-badge-bg: #12699b;
+  }
+  .scene[data-tone="indigo"] {
+    --scene-from: #f1f2ff;
+    --scene-to: #dfe3ff;
+    --scene-ring: rgba(59, 79, 191, 0.16);
+    --scene-ink: #26359a;
+    --scene-accent: #3b4fbf;
+    --scene-shadow: rgba(59, 79, 191, 0.45);
+    --scene-glow: rgba(59, 79, 191, 0.2);
+    --scene-badge-bg: #3446ad;
+  }
+  .scene[data-tone="mint"] {
+    --scene-from: #edf9f5;
+    --scene-to: #d6efe7;
+    --scene-ring: rgba(8, 127, 103, 0.18);
+    --scene-ink: #0a6a55;
+    --scene-accent: #0b8b6e;
+    --scene-shadow: rgba(8, 127, 103, 0.42);
+    --scene-glow: rgba(8, 127, 103, 0.18);
+    --scene-badge-bg: #077a61;
+  }
+  .scene[data-tone="amber"] {
+    --scene-from: #fff7ea;
+    --scene-to: #ffe9c9;
+    --scene-ring: rgba(154, 100, 23, 0.2);
+    --scene-ink: #8a5a12;
+    --scene-accent: #b57516;
+    --scene-shadow: rgba(154, 100, 23, 0.42);
+    --scene-glow: rgba(181, 117, 22, 0.18);
+    --scene-badge-bg: #9a6417;
+  }
+  .scene[data-tone="ink"] {
+    --scene-from: #24406e;
+    --scene-to: #0d1b2f;
+    --scene-ring: rgba(255, 255, 255, 0.16);
+    --scene-ink: #ffffff;
+    --scene-accent: #9dc0ff;
+    --scene-shadow: rgba(13, 27, 47, 0.7);
+    --scene-glow: rgba(120, 165, 255, 0.3);
+    --scene-badge-bg: #ffffff;
+    --scene-badge-ink: #123f8c;
+    --scene-edge: rgba(255, 255, 255, 0.22);
+  }
+
+  /* 選択中：面をブランドカラーで塗り、線画を白へ反転させる */
+  .scene[data-active="true"] {
+    --scene-from: #3579e2;
+    --scene-to: #123f8c;
+    --scene-ring: rgba(255, 255, 255, 0.3);
+    --scene-ink: #ffffff;
+    --scene-accent: #ffffff;
+    --scene-shadow: rgba(18, 63, 140, 0.75);
+    --scene-glow: rgba(25, 92, 199, 0.3);
+    --scene-badge-bg: #ffffff;
+    --scene-badge-ink: #123f8c;
+  }
+}
+
+@layer components {
+  /* ブランドマーク：ホバーで方位針だけをわずかに回す */
+  .brandmark__needle {
+    transform-origin: 50% 50%;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .scene-group:hover .brandmark__needle {
+    transform: rotate(-12deg);
   }
 }

@@ -1,5 +1,7 @@
 import { Container } from "../ui/Container";
 import { SectionHeading } from "../ui/SectionHeading";
+import { IconScene } from "../ui/IconScene";
+import { STEP_SCENES } from "../ui/visuals";
 
 const STEPS = [
   {
@@ -26,24 +28,30 @@ const STEPS = [
 
 export function HowItWorks() {
   return (
-    <section className="py-14 sm:py-20">
+    <section className="py-16 sm:py-24">
       <Container>
         <SectionHeading
           eyebrow="体験の流れ"
           title="2〜3分で、こんなことがわかります"
         />
-        <ol className="stagger mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
-          {STEPS.map((s) => (
+        <ol className="stagger relative mt-9 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+          {STEPS.map((s, index) => (
             <li
               key={s.no}
-              className="relative overflow-hidden rounded-2xl border border-line bg-surface p-5"
+              className="scene-group relative rounded-3xl border border-line/80 bg-surface p-5 shadow-[0_15px_38px_-34px_rgba(13,27,47,0.55)] sm:min-h-48 sm:p-6"
             >
               <span
                 aria-hidden
-                className="absolute -right-1 -top-2 text-[3.2rem] font-black leading-none text-line-soft"
+                className="absolute right-4 top-3 text-[2.8rem] font-black leading-none text-brand-soft"
               >
                 {s.no}
               </span>
+              {/* ステップは円形のタイルで、他セクションの角丸四角と描き分ける */}
+              <IconScene
+                {...STEP_SCENES[index]}
+                variant="step"
+                className="mb-4"
+              />
               <p className="relative text-[0.95rem] font-bold text-ink">
                 {s.title}
               </p>

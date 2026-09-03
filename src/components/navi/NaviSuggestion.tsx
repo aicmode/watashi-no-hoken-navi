@@ -1,5 +1,8 @@
 import { COVERAGE_MAP } from "@/data/coverages";
 import type { LifeEvent } from "@/data/lifeEvents";
+import { AppIcon } from "../ui/AppIcon";
+import { IconScene } from "../ui/IconScene";
+import { COVERAGE_SCENES } from "../ui/visuals";
 
 /**
  * 簡易ナビ。
@@ -10,9 +13,9 @@ export function NaviSuggestion({ event }: { event: LifeEvent }) {
   const items = event.suggested.map((id) => COVERAGE_MAP[id]);
 
   return (
-    <div className="animate-fade-up rounded-3xl border border-brand/25 bg-brand-soft/45 p-6 sm:p-7">
+    <div className="animate-fade-up rounded-[1.75rem] border border-brand/20 bg-brand-soft/45 p-6 shadow-[0_18px_48px_-40px_rgba(25,92,199,0.5)] sm:p-8">
       <span className="inline-flex items-center gap-1.5 rounded-full bg-surface px-3 py-1 text-[0.7rem] font-bold text-brand-deep">
-        <span aria-hidden>🧭</span>
+        <AppIcon name="compass" size={14} />
         かんたんナビ
       </span>
 
@@ -27,7 +30,7 @@ export function NaviSuggestion({ event }: { event: LifeEvent }) {
         {items.map((c, i) => (
           <li
             key={c.id}
-            className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3"
+            className="scene-group flex items-center gap-3 rounded-2xl bg-surface px-4 py-3"
           >
             <span
               aria-hidden
@@ -35,9 +38,13 @@ export function NaviSuggestion({ event }: { event: LifeEvent }) {
             >
               {i + 1}
             </span>
-            <span aria-hidden className="text-lg">
-              {c.emoji}
-            </span>
+            <IconScene
+              {...COVERAGE_SCENES[c.id]}
+              badge={undefined}
+              variant="compact"
+              size="sm"
+              smSize="sm"
+            />
             <span className="min-w-0 text-[0.92rem] font-bold text-ink">
               {c.title}
             </span>

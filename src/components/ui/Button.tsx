@@ -5,22 +5,22 @@ type Variant = "primary" | "secondary" | "ghost";
 type Size = "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold " +
-  "transition-all duration-200 active:scale-[0.98] disabled:opacity-50 " +
+  "group inline-flex min-h-11 items-center justify-center gap-2 rounded-full font-semibold " +
+  "transition-all duration-200 ease-out active:translate-y-px active:scale-[0.985] disabled:opacity-50 " +
   "disabled:pointer-events-none select-none";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-brand text-white shadow-[0_10px_28px_-12px_rgba(31,86,214,0.75)] " +
-    "hover:bg-brand-deep hover:shadow-[0_14px_34px_-12px_rgba(31,86,214,0.8)]",
+    "bg-brand text-white shadow-[0_12px_28px_-12px_rgba(25,92,199,0.78)] " +
+    "hover:-translate-y-0.5 hover:bg-brand-deep hover:shadow-[0_18px_36px_-14px_rgba(25,92,199,0.82)]",
   secondary:
-    "bg-surface text-ink border border-line hover:border-brand/40 hover:bg-brand-soft/50",
+    "bg-surface text-ink border border-line shadow-[0_8px_20px_-16px_rgba(13,27,47,0.55)] hover:-translate-y-0.5 hover:border-brand/35 hover:bg-brand-soft/45",
   ghost: "text-brand hover:bg-brand-soft",
 };
 
 const sizes: Record<Size, string> = {
   md: "px-5 py-2.5 text-[0.95rem]",
-  lg: "px-7 py-4 text-base sm:text-[1.05rem]",
+  lg: "px-7 py-3.5 text-[0.95rem] sm:px-8 sm:py-4 sm:text-base",
 };
 
 export function buttonClass(variant: Variant = "primary", size: Size = "md") {
