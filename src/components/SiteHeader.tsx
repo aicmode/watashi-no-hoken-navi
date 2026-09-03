@@ -9,7 +9,7 @@ export function SiteHeader() {
         <div className="flex h-14 items-center justify-between sm:h-16">
           <Link
             href="/"
-            className="group flex items-center gap-2.5"
+            className="group flex min-h-11 items-center gap-2.5"
             aria-label={`${SITE.name} トップへ`}
           >
             <span

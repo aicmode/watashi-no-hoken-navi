@@ -37,6 +37,26 @@ export function MetaphorPanel({
           {story.bridge}
         </p>
       </div>
+      <div className="border-t border-brand/10 bg-surface px-6 py-5 sm:px-7 sm:py-6">
+        <p className="text-[0.75rem] font-bold text-ink">
+          この変化で考えてみたいこと
+        </p>
+        <ul className="mt-3 grid gap-2 sm:grid-cols-3">
+          {story.thinkingPoints.map((point) => (
+            <li
+              key={point}
+              className="flex gap-2 rounded-xl bg-canvas px-3.5 py-3"
+            >
+              <span aria-hidden className="mt-0.5 shrink-0 text-brand">
+                ?
+              </span>
+              <span className="text-balance-ja text-[0.78rem] leading-relaxed text-ink-soft">
+                {point}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

@@ -14,13 +14,13 @@ const STEPS = [
   },
   {
     no: "03",
-    title: "選んだ例えで読む",
-    body: "専門用語ではなく、選んだ例えの話に置き換えて説明します。",
+    title: "暮らしとつなげて知る",
+    body: "選んだ例えから、暮らしへの影響や考えてみたい問いへつなげます。",
   },
   {
     no: "04",
     title: "考える入口を知る",
-    body: "「どこから見てみるとよさそうか」の目安が見えます。商品の紹介はしません。",
+    body: "今ある備えや、保険以外の方法も含めて考える視点を知ります。",
   },
 ];
 
@@ -30,7 +30,7 @@ export function HowItWorks() {
       <Container>
         <SectionHeading
           eyebrow="体験の流れ"
-          title="1分で、こんなことがわかります"
+          title="2〜3分で、こんなことがわかります"
         />
         <ol className="stagger mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
           {STEPS.map((s) => (

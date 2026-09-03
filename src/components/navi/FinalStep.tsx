@@ -2,6 +2,7 @@ import { ContactCta } from "../ContactCta";
 import { Button, ButtonLink } from "../ui/Button";
 import type { Analogy } from "@/data/analogies";
 import type { LifeEvent } from "@/data/lifeEvents";
+import { FINAL_LEARNINGS } from "@/data/preparedness";
 
 export function FinalStep({
   analogy,
@@ -29,16 +30,37 @@ export function FinalStep({
           「{analogy.title}」に置き換えながら、「{event.label}」という変化から暮らしの備えを眺めてみました。全部を覚えなくて大丈夫です。気になるところが一つ見つかれば十分です。
         </p>
 
-        <div className="mx-auto mt-8 max-w-md rounded-2xl bg-canvas px-5 py-6">
+        <div className="mx-auto mt-7 max-w-lg rounded-2xl bg-brand-soft/55 px-5 py-5 text-left">
+          <p className="text-[0.72rem] font-bold text-brand-deep">
+            ここまでで分かったこと
+          </p>
+          <ul className="mt-3 space-y-2.5">
+            {FINAL_LEARNINGS.map((learning) => (
+              <li key={learning} className="flex gap-2.5">
+                <span
+                  aria-hidden
+                  className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-surface text-[0.65rem] font-bold text-brand"
+                >
+                  ✓
+                </span>
+                <span className="text-balance-ja text-[0.82rem] font-semibold leading-relaxed text-ink-soft">
+                  {learning}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mx-auto mt-4 max-w-lg rounded-2xl bg-canvas px-5 py-6">
           <p className="text-balance-ja text-[0.95rem] font-bold leading-relaxed text-ink">
             自分の場合はどうなのか、
             <br className="sm:hidden" />
             もう少し詳しく聞いてみる
           </p>
           <p className="text-balance-ja mt-2 text-[0.78rem] leading-relaxed text-muted">
-            一般的な話ではなく、あなたの状況に合わせた話は、人に聞くのがいちばん早いこともあります。
+            自分の状況に合わせて整理したいときは、専門家と一緒に確認する方法もあります。
           </p>
-          <ContactCta className="mt-5 w-full" />
+          <ContactCta label="自分の場合について聞いてみる" className="mt-5 w-full" />
         </div>
 
         {/* 別の入口も試せることを、控えめに示す */}
@@ -78,7 +100,7 @@ function TextLink({
     <button
       type="button"
       onClick={onClick}
-      className="inline-flex items-center gap-1.5 py-2.5 text-muted underline-offset-4 transition-colors hover:text-brand hover:underline"
+      className="inline-flex min-h-11 items-center gap-1.5 py-2.5 text-muted underline-offset-4 transition-colors hover:text-brand hover:underline"
     >
       {children}
     </button>

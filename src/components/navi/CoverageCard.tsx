@@ -77,9 +77,14 @@ export function CoverageCard({
               </p>
             </div>
 
-            <p className="text-balance-ja text-[0.88rem] leading-relaxed text-ink">
-              {coverage.detail.lead}
-            </p>
+            <div>
+              <p className="text-[0.72rem] font-bold text-brand-deep">
+                どんなことを考える？
+              </p>
+              <p className="text-balance-ja mt-1.5 text-[0.88rem] leading-relaxed text-ink">
+                {coverage.detail.lead}
+              </p>
+            </div>
 
             <ul className="space-y-2">
               {coverage.detail.points.map((p) => (
@@ -95,6 +100,15 @@ export function CoverageCard({
             <p className="text-balance-ja text-[0.72rem] leading-relaxed text-muted">
               {FIELD_NOTE[coverage.field]}
             </p>
+
+            <div className="rounded-xl border border-brand/15 bg-brand-soft/55 px-4 py-3.5">
+              <p className="text-[0.7rem] font-bold text-brand-deep">
+                こんなことを考えてみる
+              </p>
+              <p className="text-balance-ja mt-1 text-[0.82rem] font-semibold leading-relaxed text-ink">
+                {coverage.detail.question}
+              </p>
+            </div>
           </div>
         </div>
       ) : null}

@@ -19,7 +19,7 @@ export function CtaBand() {
               まずは、眺めてみるだけで大丈夫です。
             </h2>
             <p className="text-balance-ja mx-auto mt-3 max-w-md text-[0.9rem] leading-relaxed text-white/70">
-              入力も登録もありません。選ぶのは、しっくりくる例えと、最近あった変化だけ。
+              入力も登録もありません。身近な例えから、自分の暮らしと今ある備えを整理できます。
             </p>
             <ButtonLink
               href="/navi"

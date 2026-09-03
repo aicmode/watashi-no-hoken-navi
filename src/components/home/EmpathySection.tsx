@@ -24,14 +24,8 @@ export function EmpathySection() {
     <section className="py-14 sm:py-20">
       <Container>
         <SectionHeading
-          eyebrow="よく聞く声"
-          title={
-            <>
-              そう思うのは、
-              <br className="sm:hidden" />
-              自然なことです。
-            </>
-          }
+          eyebrow="はじめに"
+          title="こんなふうに感じることはありませんか？"
           lead="保険には、難しく感じやすい言葉がたくさん出てきます。無理にわかろうとしなくて大丈夫です。"
         />
 

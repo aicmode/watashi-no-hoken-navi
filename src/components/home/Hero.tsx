@@ -29,7 +29,7 @@ export function Hero() {
           <h1 className="text-balance-ja animate-fade-up mt-6 text-[2rem] font-bold leading-[1.35] tracking-tight text-ink sm:text-5xl sm:leading-[1.3]">
             保険を、
             <br className="sm:hidden" />
-            もっとわかりやすく。
+            少し理解できる。
           </h1>
 
           <p
@@ -38,7 +38,7 @@ export function Hero() {
           >
             身近なものに置き換えながら、
             <br className="hidden sm:block" />
-            あなたの暮らしに関係する“備え”を見てみませんか？
+            商品を選ぶ前に、暮らしと今ある“備え”を見てみませんか？
           </p>
 
           <div
@@ -49,7 +49,7 @@ export function Hero() {
               自分に関係する備えを見てみる
               <span aria-hidden>→</span>
             </ButtonLink>
-            <p className="text-xs text-muted">約1分・登録も入力もありません</p>
+            <p className="text-xs text-muted">約2〜3分・登録も入力もありません</p>
           </div>
 
           {/* 「自分にしっくりくる例えを選べる」ことを示すミニビジュアル */}

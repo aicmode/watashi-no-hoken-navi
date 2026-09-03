@@ -79,7 +79,7 @@ export function ContactModal({
             type="button"
             onClick={onClose}
             aria-label="閉じる"
-            className="grid size-9 shrink-0 place-items-center rounded-full bg-canvas text-muted transition-colors hover:bg-line-soft hover:text-ink"
+            className="grid size-11 shrink-0 place-items-center rounded-full bg-canvas text-muted transition-colors hover:bg-line-soft hover:text-ink"
           >
             <span aria-hidden>✕</span>
           </button>

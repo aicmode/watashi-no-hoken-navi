@@ -10,6 +10,7 @@ import { MetaphorPanel } from "./MetaphorPanel";
 import { NaviSuggestion } from "./NaviSuggestion";
 import { CoverageCard } from "./CoverageCard";
 import { FinalStep } from "./FinalStep";
+import { PreparednessMethods } from "./PreparednessMethods";
 import { COVERAGES } from "@/data/coverages";
 import { ANALOGY_MAP, type Analogy, type AnalogyId } from "@/data/analogies";
 import {
@@ -85,7 +86,7 @@ export function NaviExperience() {
             <button
               type="button"
               onClick={restart}
-              className="py-2 text-[0.78rem] font-semibold text-muted underline-offset-4 transition-colors hover:text-brand hover:underline"
+              className="inline-flex min-h-11 items-center py-2 text-[0.78rem] font-semibold text-muted underline-offset-4 transition-colors hover:text-brand hover:underline"
             >
               最初から
             </button>
@@ -263,6 +264,8 @@ function StepLearn({
         </div>
       </div>
 
+      <PreparednessMethods />
+
       <NaviSuggestion event={event} />
 
       <div className="flex flex-col gap-3 sm:flex-row sm:justify-between">
@@ -325,7 +328,7 @@ function TextLink({
     <button
       type="button"
       onClick={onClick}
-      className="inline-flex items-center gap-1.5 py-2.5 text-[0.78rem] font-semibold text-muted underline-offset-4 transition-colors hover:text-brand hover:underline"
+      className="inline-flex min-h-11 items-center gap-1.5 py-2.5 text-[0.78rem] font-semibold text-muted underline-offset-4 transition-colors hover:text-brand hover:underline"
     >
       {children}
     </button>

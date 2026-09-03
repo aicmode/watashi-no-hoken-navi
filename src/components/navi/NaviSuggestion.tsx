@@ -4,7 +4,7 @@ import type { LifeEvent } from "@/data/lifeEvents";
 /**
  * 簡易ナビ。
  * 商品の推薦ではなく「考える順番の目安」を示すだけ。
- * 断定表現（必要です／おすすめです）は使わない。
+ * 断定的な推奨表現は使わない。
  */
 export function NaviSuggestion({ event }: { event: LifeEvent }) {
   const items = event.suggested.map((id) => COVERAGE_MAP[id]);
@@ -17,7 +17,7 @@ export function NaviSuggestion({ event }: { event: LifeEvent }) {
       </span>
 
       <h3 className="text-balance-ja mt-3.5 text-[1.05rem] font-bold leading-relaxed text-ink sm:text-lg">
-        今の暮らしなら、このあたりから見てみてもよさそうです
+        今の暮らしから、考える入口を並べてみると
       </h3>
       <p className="text-balance-ja mt-2 text-[0.83rem] leading-relaxed text-ink-soft">
         {event.naviNote}
