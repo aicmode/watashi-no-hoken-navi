@@ -85,7 +85,7 @@ export function ContactModal({
         aria-modal="true"
         aria-labelledby="contact-modal-title"
         aria-describedby="contact-modal-description"
-        className="animate-pop max-h-[90dvh] w-full max-w-md overflow-y-auto rounded-t-[2rem] border border-line bg-surface p-6 text-left shadow-[0_28px_90px_-28px_rgba(13,27,47,0.65)] sm:rounded-[2rem] sm:p-8"
+        className="contact-panel animate-pop max-h-[90dvh] w-full max-w-md overflow-y-auto rounded-t-[2rem] border border-line bg-surface p-6 text-left shadow-[0_28px_90px_-28px_rgba(13,27,47,0.65)] sm:rounded-[2rem] sm:p-8"
       >
         <div className="flex items-start justify-between gap-4">
           <div>

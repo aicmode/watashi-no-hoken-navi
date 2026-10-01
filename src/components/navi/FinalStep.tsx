@@ -6,6 +6,7 @@ import { FINAL_LEARNINGS } from "@/data/preparedness";
 import { AppIcon, STROKE } from "../ui/AppIcon";
 import { IconScene } from "../ui/IconScene";
 import { analogyIconName } from "../ui/visuals";
+import { BalanceEmblem } from "../balance/BalanceEmblem";
 
 export function FinalStep({
   analogy,
@@ -21,9 +22,9 @@ export function FinalStep({
   onRestart: () => void;
 }) {
   return (
-    <div className="animate-fade-up">
+    <div className="navi-final animate-fade-up">
       <div className="relative overflow-hidden rounded-[2rem] border border-line/80 bg-surface p-6 text-center shadow-[0_28px_70px_-46px_rgba(13,27,47,0.7)] sm:p-11">
-        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_50%_0%,rgba(234,242,255,0.95),transparent_72%)]" />
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_50%_0%,rgba(237,242,249,0.95),transparent_72%)]" />
         <span className="scene-group relative mx-auto block w-fit">
           <IconScene
             icon="sparkles"
@@ -56,6 +57,23 @@ export function FinalStep({
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* 次の一歩：守る（保険）と育てる（資産形成）を一緒に整理する体験へつなぐ */}
+        <div className="mx-auto mt-4 max-w-lg rounded-2xl border border-gold/30 bg-gold-soft/45 px-5 py-6">
+          <BalanceEmblem size="sm" smSize="md" edge="#fbf7ef" />
+          <p className="text-balance-ja mt-3 text-[0.95rem] font-bold leading-relaxed text-ink">
+            次は、守るお金と育てるお金を
+            <br className="sm:hidden" />
+            整理してみませんか？
+          </p>
+          <p className="text-balance-ja mt-2 text-[0.78rem] leading-relaxed text-ink-soft">
+            保険などの「守る」と、資産形成の「育てる」。7つの質問で、どちらから考えるとよさそうかを並べて見られます。
+          </p>
+          <ButtonLink href="/balance" variant="secondary" className="mt-5 w-full">
+            わたしのお金バランスを見てみる
+            <AppIcon name="arrow-right" size={17} className="transition-transform group-hover:translate-x-0.5" />
+          </ButtonLink>
         </div>
 
         <div className="mx-auto mt-4 max-w-lg rounded-2xl bg-canvas px-5 py-6">

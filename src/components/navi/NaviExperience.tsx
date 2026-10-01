@@ -78,8 +78,8 @@ export function NaviExperience() {
   const current: StepNo = !analogy ? 1 : !event && step > 2 ? 2 : step;
 
   return (
-    <div className="relative overflow-hidden pb-10 pt-5 sm:pt-9">
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[32rem] bg-[radial-gradient(circle_at_50%_0%,rgba(234,242,255,0.9),transparent_72%)]" />
+    <div className="navi-experience relative overflow-hidden pb-10 pt-5 sm:pt-9">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[32rem] bg-[radial-gradient(circle_at_50%_0%,rgba(237,242,249,0.9),transparent_72%)]" />
       <Container>
         <div ref={topRef} className="scroll-mt-20" />
 
@@ -148,8 +148,8 @@ function StepAnalogy({
 }) {
   return (
     <section className="animate-fade-up mt-8 sm:mt-10">
-      <span className="text-[0.68rem] font-bold tracking-[0.12em] text-brand-deep">STEP 01 · YOUR PERSPECTIVE</span>
-      <h1 className="text-balance-ja mt-2 text-[1.7rem] font-bold leading-[1.5] tracking-[-0.03em] text-ink sm:text-[2.15rem]">
+      <span className="eyebrow">STEP 01 · YOUR PERSPECTIVE</span>
+      <h1 className="text-balance-ja mt-2 text-[1.7rem] font-semibold leading-[1.55] text-ink sm:text-[2.15rem]">
         あなたに合う例えを
         <br className="sm:hidden" />
         選んでみましょう
@@ -186,8 +186,8 @@ function StepLifeEvent({
     <section className="animate-fade-up mt-8 sm:mt-10">
       <SelectionBar analogy={analogy} onChangeAnalogy={onChangeAnalogy} />
 
-      <span className="mt-5 block text-[0.68rem] font-bold tracking-[0.12em] text-brand-deep">STEP 02 · YOUR LIFE CHANGE</span>
-      <h1 className="text-balance-ja mt-2 text-[1.7rem] font-bold leading-[1.5] tracking-[-0.03em] text-ink sm:text-[2.15rem]">
+      <span className="eyebrow mt-5">STEP 02 · YOUR LIFE CHANGE</span>
+      <h1 className="text-balance-ja mt-2 text-[1.7rem] font-semibold leading-[1.55] text-ink sm:text-[2.15rem]">
         最近、あなたの暮らしで
         <br className="sm:hidden" />
         変わったことは？
@@ -238,8 +238,8 @@ function StepLearn({
           </span>
           <Chip icon={lifeEventIconName(event.id)} label={event.label} />
         </div>
-        <span className="mt-5 block text-[0.68rem] font-bold tracking-[0.12em] text-brand-deep">STEP 03 · UNDERSTAND</span>
-        <h1 className="text-balance-ja mt-2 text-[1.7rem] font-bold leading-[1.5] tracking-[-0.03em] text-ink sm:text-[2.15rem]">
+        <span className="eyebrow mt-5">STEP 03 · UNDERSTAND</span>
+        <h1 className="text-balance-ja mt-2 text-[1.7rem] font-semibold leading-[1.55] text-ink sm:text-[2.15rem]">
           {/* 例えの名前で長さが変わるため、改行はブラウザに任せる */}
           {analogy.title}に例えると、わかりやすくなります。
         </h1>
@@ -252,7 +252,7 @@ function StepLearn({
 
       <MetaphorPanel analogy={analogy} event={event} />
 
-      <div className="rounded-[1.75rem] border border-line/70 bg-surface/55 p-4 sm:p-6">
+      <div className="coverage-section rounded-[1.75rem] border border-line/70 bg-surface/55 p-4 sm:p-6">
         <h2 className="text-balance-ja text-xl font-bold text-ink sm:text-2xl">
           暮らしの備えは、大きく4つ
         </h2>

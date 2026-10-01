@@ -17,7 +17,7 @@ export function MetaphorPanel({
   const story = analogy.lifeEventStories[event.id];
 
   return (
-    <div className="animate-fade-up overflow-hidden rounded-[1.75rem] border border-line/80 bg-surface shadow-[0_24px_60px_-42px_rgba(13,27,47,0.58)]">
+    <div className="metaphor-panel animate-fade-up overflow-hidden rounded-[1.75rem] border border-line/80 bg-surface shadow-[0_24px_60px_-42px_rgba(13,27,47,0.58)]">
       <div className="grid gap-px bg-line sm:grid-cols-2">
         <Panel
           tone="metaphor"

@@ -1,4 +1,9 @@
 import type { AnalogyId } from "@/data/analogies";
+import type {
+  GrowOptionId,
+  ProtectItemId,
+  QuestionKey,
+} from "@/data/balance/types";
 import type { CoverageId } from "@/data/coverages";
 import type { LifeEventId } from "@/data/lifeEvents";
 import type { AppIconName } from "./AppIcon";
@@ -83,6 +88,42 @@ export const STEP_SCENES: SceneSpec[] = [
   { icon: "route", tone: "indigo", decor: "branch" },
   { icon: "shield-check", tone: "mint", decor: "rings" },
 ];
+
+/**
+ * わたしのお金バランス（守る × 育てる）。
+ * 守る＝ブランドの濃紺系、育てる＝深いグリーン系で描き分け、
+ * 画面のどこにあっても「どちら側の話か」が色で分かるようにする。
+ */
+export const BALANCE_SIDE_SCENES: Record<"protect" | "grow", SceneSpec> = {
+  protect: { icon: "shield-check", badge: "heart", tone: "brand", decor: "rings" },
+  grow: { icon: "sprout", badge: "trending-up", tone: "mint", decor: "branch" },
+};
+
+export const PROTECT_SCENES: Record<ProtectItemId, SceneSpec> = {
+  emergency: { icon: "piggy-bank", badge: "shield-check", tone: "brand", decor: "dots" },
+  medical: { icon: "health", badge: "plus", tone: "brand", decor: "pulse" },
+  death: { icon: "family", badge: "home", tone: "indigo", decor: "arc" },
+  income: { icon: "briefcase", badge: "clock", tone: "indigo", decor: "timeline" },
+  cancer: { icon: "ribbon", badge: "stethoscope", tone: "cyan", decor: "rings" },
+  retirement: { icon: "sunset", badge: "home", tone: "cyan", decor: "timeline" },
+};
+
+export const GROW_SCENES: Record<GrowOptionId, SceneSpec> = {
+  deposit: { icon: "landmark", badge: "lock", tone: "mint", decor: "dots" },
+  nisa: { icon: "trending-up", badge: "badge-check", tone: "mint", decor: "spark" },
+  ideco: { icon: "hourglass", badge: "sunset", tone: "mint", decor: "timeline" },
+  longterm: { icon: "sprout", badge: "layers", tone: "mint", decor: "branch" },
+};
+
+export const QUESTION_SCENES: Record<QuestionKey, SceneSpec> = {
+  age: { icon: "calendar", badge: "user", tone: "brand", decor: "timeline" },
+  household: { icon: "users", badge: "home", tone: "brand", decor: "arc" },
+  concern: { icon: "help", badge: "heart", tone: "indigo", decor: "dots" },
+  emergencyFund: { icon: "piggy-bank", badge: "shield-check", tone: "brand", decor: "dots" },
+  experience: { icon: "sprout", badge: "coins", tone: "mint", decor: "branch" },
+  horizon: { icon: "hourglass", badge: "flag", tone: "mint", decor: "timeline" },
+  risk: { icon: "scale", badge: "trending-up", tone: "mint", decor: "pulse" },
+};
 
 /** チップやリスト内など、面を持たせない小さな用途向けのアイコン名。 */
 export const analogyIconName = (id: AnalogyId | string): AppIconName =>

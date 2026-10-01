@@ -4,9 +4,9 @@ import { ProtectionScene } from "../ui/ProtectionScene";
 
 export function WhyPrepareSection() {
   return (
-    <section className="py-14 sm:py-20">
+    <section className="home-why py-14 sm:py-20">
       <Container>
-        <div className="overflow-hidden rounded-[1.75rem] border border-brand/15 bg-surface shadow-[0_24px_60px_-44px_rgba(25,92,199,0.48)]">
+        <div className="overflow-hidden rounded-[1.75rem] border border-brand/15 bg-surface shadow-[0_24px_60px_-44px_rgba(29,75,143,0.48)]">
           <div className="grid sm:grid-cols-[15.5rem_1fr] sm:items-stretch">
             {/* 「暮らし → もしも → 備え」をひと目で見せるコンセプトビジュアル */}
             <div className="section-grid grid place-items-center bg-brand-soft/70 px-6 py-8 sm:px-6 sm:py-9">

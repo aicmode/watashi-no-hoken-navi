@@ -11,7 +11,7 @@ import { METHOD_SCENES, PERSPECTIVE_SCENES } from "../ui/visuals";
 
 export function PreparednessSection() {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="home-preparedness py-16 sm:py-24">
       <Container>
         <SectionHeading
           eyebrow="商品を選ぶ前に"

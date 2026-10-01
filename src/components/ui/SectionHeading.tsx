@@ -13,13 +13,11 @@ export function SectionHeading({
 }) {
   const alignment = align === "center" ? "text-center items-center" : "";
   return (
-    <div className={`flex flex-col gap-3.5 ${alignment}`}>
+    <div className={`section-heading flex flex-col gap-3.5 ${alignment}`}>
       {eyebrow ? (
-        <span className="inline-flex w-fit items-center gap-2 text-[0.7rem] font-bold tracking-[0.11em] text-brand-deep before:block before:h-px before:w-5 before:bg-brand/60">
-          {eyebrow}
-        </span>
+        <span className="eyebrow w-fit">{eyebrow}</span>
       ) : null}
-      <h2 className="text-balance-ja text-[1.55rem] font-bold tracking-[-0.025em] text-ink sm:text-[2rem]">
+      <h2 className="text-balance-ja text-[1.6rem] font-semibold leading-[1.5] text-ink sm:text-[2.1rem]">
         {title}
       </h2>
       {lead ? (

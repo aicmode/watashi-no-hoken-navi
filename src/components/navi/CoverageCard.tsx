@@ -23,9 +23,9 @@ export function CoverageCard({
   return (
     <div
       className={[
-        "overflow-hidden rounded-3xl border bg-surface transition-all duration-300",
+        "coverage-item overflow-hidden rounded-3xl border bg-surface transition-all duration-300",
         highlighted
-          ? "border-brand/45 shadow-[0_16px_40px_-30px_rgba(31,86,214,0.7)]"
+          ? "border-brand/45 shadow-[0_16px_40px_-30px_rgba(29,75,143,0.7)]"
           : "border-line shadow-[0_12px_30px_-28px_rgba(16,22,35,0.6)]",
       ].join(" ")}
     >

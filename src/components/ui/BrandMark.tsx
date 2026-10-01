@@ -13,7 +13,7 @@ export function BrandMark({ className = "size-9" }: { className?: string }) {
       className={`brandmark relative grid place-items-center overflow-visible rounded-[0.78rem] ${className}`}
       style={{
         backgroundImage:
-          "linear-gradient(135deg, #3a80e8 0%, #195cc7 55%, #123f8c 100%)",
+          "linear-gradient(135deg, #3d6fb8 0%, #1d4b8f 55%, #112f5c 100%)",
         boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.26)",
       }}
     >
@@ -31,11 +31,11 @@ export function BrandMark({ className = "size-9" }: { className?: string }) {
         />
         <g className="brandmark__needle">
           <path d="M27 13 L18.4 17.4 L13 27 L21.6 22.6 Z" fill="#ffffff" />
-          <circle cx="20" cy="20" r="2.1" fill="#123f8c" />
+          <circle cx="20" cy="20" r="2.1" fill="#112f5c" />
         </g>
       </svg>
       {/* サイズに追従するアクセントドット */}
-      <span className="absolute -right-[5%] -top-[5%] size-[22%] rounded-full bg-mint ring-2 ring-canvas" />
+      <span className="absolute -right-[5%] -top-[5%] size-[22%] rounded-full bg-gold ring-2 ring-canvas" />
     </span>
   );
 }

@@ -5,7 +5,7 @@ import { METHOD_SCENES } from "../ui/visuals";
 
 export function PreparednessMethods() {
   return (
-    <div className="rounded-[1.75rem] border border-mint/20 bg-mint-soft/55 p-6 shadow-[0_18px_48px_-40px_rgba(8,127,103,0.48)] sm:p-8">
+    <div className="preparedness-methods rounded-[1.75rem] border border-mint/20 bg-mint-soft/55 p-6 shadow-[0_18px_48px_-40px_rgba(8,127,103,0.48)] sm:p-8">
       <span className="inline-flex items-center gap-1.5 rounded-full bg-surface px-3 py-1 text-[0.7rem] font-bold text-mint">
         <AppIcon name="layers" size={14} />
         備え方の選択肢

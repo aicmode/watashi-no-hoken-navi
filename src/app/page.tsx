@@ -7,6 +7,7 @@ import { WhyPrepareSection } from "@/components/home/WhyPrepareSection";
 import { PreparednessSection } from "@/components/home/PreparednessSection";
 import { LifeMomentsSection } from "@/components/home/LifeMomentsSection";
 import { FaqSection } from "@/components/home/FaqSection";
+import { MoneyBalanceSection } from "@/components/home/MoneyBalanceSection";
 
 export default function HomePage() {
   return (
@@ -18,6 +19,7 @@ export default function HomePage() {
       <BasicsSection />
       <PreparednessSection />
       <LifeMomentsSection />
+      <MoneyBalanceSection />
       <FaqSection />
       <CtaBand />
     </>

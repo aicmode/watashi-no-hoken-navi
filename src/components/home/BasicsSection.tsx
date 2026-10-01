@@ -7,7 +7,7 @@ import { FIELD_SCENES } from "../ui/visuals";
 
 export function BasicsSection() {
   return (
-    <section id="basics" className="bg-surface/55 py-16 sm:py-24">
+    <section id="basics" className="home-basics bg-surface/55 py-16 sm:py-24">
       <Container>
         <SectionHeading
           eyebrow="はじめの一歩"
@@ -19,7 +19,7 @@ export function BasicsSection() {
           {INSURANCE_FIELDS.map((f) => (
             <details
               key={f.label}
-              className="group overflow-hidden rounded-3xl border border-line/80 bg-surface shadow-[0_18px_44px_-36px_rgba(13,27,47,0.5)] transition-all hover:border-brand/20 hover:shadow-[0_22px_48px_-34px_rgba(25,92,199,0.3)]"
+              className="group overflow-hidden rounded-3xl border border-line/80 bg-surface shadow-[0_18px_44px_-36px_rgba(13,27,47,0.5)] transition-all hover:border-brand/20 hover:shadow-[0_22px_48px_-34px_rgba(29,75,143,0.3)]"
             >
               <summary className="scene-group flex min-h-48 cursor-pointer list-none flex-col p-6 marker:content-none">
                 <span className="flex items-start justify-between gap-3">

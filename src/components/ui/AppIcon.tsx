@@ -50,6 +50,16 @@ import {
   Waypoints,
   Wrench,
   X,
+  Banknote,
+  Coins,
+  GraduationCap,
+  HandCoins,
+  Hourglass,
+  Info,
+  Ribbon,
+  Scale,
+  Sunset,
+  TrendingUp,
   type LucideIcon,
 } from "lucide-react";
 
@@ -109,6 +119,16 @@ export type AppIconName =
   | "wallet"
   | "waypoints"
   | "wrench"
+  | "banknote"
+  | "coins"
+  | "graduation"
+  | "hand-coins"
+  | "hourglass"
+  | "info"
+  | "ribbon"
+  | "scale"
+  | "sunset"
+  | "trending-up"
   | "x";
 
 export const APP_ICONS: Record<AppIconName, LucideIcon> = {
@@ -162,6 +182,16 @@ export const APP_ICONS: Record<AppIconName, LucideIcon> = {
   wallet: WalletCards,
   waypoints: Waypoints,
   wrench: Wrench,
+  "banknote": Banknote,
+  "coins": Coins,
+  "graduation": GraduationCap,
+  "hand-coins": HandCoins,
+  "hourglass": Hourglass,
+  "info": Info,
+  "ribbon": Ribbon,
+  "scale": Scale,
+  "sunset": Sunset,
+  "trending-up": TrendingUp,
   x: X,
 };
 

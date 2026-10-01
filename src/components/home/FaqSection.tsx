@@ -6,8 +6,8 @@ import { IconScene } from "../ui/IconScene";
 
 export function FaqSection() {
   return (
-    <section className="section-grid py-16 sm:py-24">
-      <Container size="sm">
+    <section className="home-faq section-grid py-16 sm:py-24">
+      <Container>
         <SectionHeading
           eyebrow="ミニFAQ"
           title="気になりやすいことを、先に確認"

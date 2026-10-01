@@ -16,7 +16,7 @@ export function LifeEventPicker({
   const { pending, select } = useDeferredSelect<LifeEventId>(onSelect);
 
   return (
-    <div className="stagger grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+    <div className="event-picker stagger grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
       {LIFE_EVENTS.map((e) => {
         const isSelected = pending ? pending === e.id : selected === e.id;
         return (
@@ -26,10 +26,9 @@ export function LifeEventPicker({
             onClick={() => select(e.id)}
             aria-pressed={isSelected}
             className={[
-              "group scene-group flex min-h-24 items-center gap-4 rounded-3xl border bg-surface p-4 text-left sm:p-5",
+              "event-choice group scene-group flex min-h-24 items-center gap-4 rounded-3xl border bg-surface p-4 text-left sm:p-5",
               "shadow-[0_14px_38px_-32px_rgba(13,27,47,0.55)] transition-all duration-300",
-              "hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_22px_46px_-30px_rgba(25,92,199,0.4)]",
-              "active:scale-[0.99]",
+              "hover:border-brand/40 hover:shadow-[0_22px_46px_-30px_rgba(29,75,143,0.4)]",
               isSelected ? "border-brand bg-brand-soft/55 ring-2 ring-brand/15" : "border-line",
             ].join(" ")}
           >
@@ -37,7 +36,7 @@ export function LifeEventPicker({
               {...LIFE_EVENT_SCENES[e.id]}
               variant="life-event"
               active={isSelected}
-              edge={isSelected ? "#f2f7ff" : "#ffffff"}
+              edge={isSelected ? "#f3f6fb" : "#ffffff"}
             />
             <span className="min-w-0 flex-1">
               <span className="block text-[1rem] font-bold text-ink">

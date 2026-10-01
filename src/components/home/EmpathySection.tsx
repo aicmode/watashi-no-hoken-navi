@@ -24,7 +24,7 @@ const VOICES = [
 
 export function EmpathySection() {
   return (
-    <section className="bg-surface/50 py-16 sm:py-24">
+    <section className="home-empathy bg-surface/50 py-16 sm:py-24">
       <Container>
         <SectionHeading
           eyebrow="はじめに"
@@ -36,7 +36,7 @@ export function EmpathySection() {
           {VOICES.map((v) => (
             <li
               key={v.quote}
-              className="scene-group rounded-3xl border border-line/80 bg-surface p-5 shadow-[0_16px_42px_-34px_rgba(13,27,47,0.48)] transition-all duration-300 hover:-translate-y-1 hover:border-brand/20 hover:shadow-[0_22px_46px_-32px_rgba(25,92,199,0.35)] sm:p-6"
+              className="scene-group rounded-3xl border border-line/80 bg-surface p-5 shadow-[0_16px_42px_-34px_rgba(13,27,47,0.48)] transition-all duration-300 hover:border-brand/20 hover:shadow-[0_22px_46px_-32px_rgba(29,75,143,0.35)] sm:p-6"
             >
               <IconScene {...CONCERN_SCENES[v.visual]} variant="feature" />
               <p className="text-balance-ja mt-5 text-[0.98rem] font-bold text-ink">

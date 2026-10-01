@@ -10,7 +10,7 @@ export function Container({
   size?: "sm" | "md" | "lg";
 }) {
   const width =
-    size === "sm" ? "max-w-2xl" : size === "lg" ? "max-w-6xl" : "max-w-4xl";
+    size === "sm" ? "max-w-2xl" : size === "lg" ? "max-w-7xl" : "max-w-6xl";
   return (
     <div className={`mx-auto w-full ${width} px-5 sm:px-6 ${className}`}>
       {children}

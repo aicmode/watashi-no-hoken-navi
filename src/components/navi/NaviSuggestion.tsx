@@ -13,7 +13,7 @@ export function NaviSuggestion({ event }: { event: LifeEvent }) {
   const items = event.suggested.map((id) => COVERAGE_MAP[id]);
 
   return (
-    <div className="animate-fade-up rounded-[1.75rem] border border-brand/20 bg-brand-soft/45 p-6 shadow-[0_18px_48px_-40px_rgba(25,92,199,0.5)] sm:p-8">
+    <div className="navi-suggestion animate-fade-up rounded-[1.75rem] border border-brand/20 bg-brand-soft/45 p-6 shadow-[0_18px_48px_-40px_rgba(29,75,143,0.5)] sm:p-8">
       <span className="inline-flex items-center gap-1.5 rounded-full bg-surface px-3 py-1 text-[0.7rem] font-bold text-brand-deep">
         <AppIcon name="compass" size={14} />
         かんたんナビ

@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "incremental": false,
+    "module": "commonjs",
+    "moduleResolution": "node10",
+    "outDir": ".next/unit-tests",
+    "rootDir": ".",
+    "plugins": []
+  },
+  "include": ["tests/**/*.ts"]
+}

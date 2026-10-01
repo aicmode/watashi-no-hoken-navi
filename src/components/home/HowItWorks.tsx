@@ -28,7 +28,7 @@ const STEPS = [
 
 export function HowItWorks() {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="home-how py-16 sm:py-24">
       <Container>
         <SectionHeading
           eyebrow="体験の流れ"
